@@ -1,0 +1,10 @@
+**/target/
+
+**/logs/
+
+**/application-*.yml
+**/application-*.yaml
+**/application-*.properties
+
+
+/hmall/.idea/
