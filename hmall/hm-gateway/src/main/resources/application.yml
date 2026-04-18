@@ -34,3 +34,20 @@ spring:
           uri: lb://pay-service
           predicates:
             - Path=/pay-orders/**
+      default-filters:
+        - PrintAny=1,2,3
+
+hm:
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    # 密钥文件本身也是加密的，所以需要密码才能够解析密钥文件
+    password: hmall123
+    tokenTTL: 30m
+  auth:
+    # 不需要登陆即可访问的路径，比如登录请求的路径等
+    excludePaths:
+      - /search/**
+      - /users/login
+      - /items/**
+      - /hi
