@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: cart-service
+  profiles:
+    active: local
+  cloud:
+    nacos:
+      server-addr: 192.168.95.100:8848
+      # 读取配置中心的配置文件
+      config:
+        file-extension: yml
+        # 共享的配置
+        shared-configs:
+          - data-id: shared-jdbc.yml
+          - data-id: shared-log.yml
+          - data-id: shared-swagger.yml
