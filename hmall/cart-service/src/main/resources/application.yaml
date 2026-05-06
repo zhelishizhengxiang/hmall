@@ -1,8 +1,15 @@
 server:
   port: 8082
+  tomcat:
+    threads:
+      max: 50 # 允许的最大线程数
+    accept-count: 50 # 最大排队等待数量
+    max-connections: 100 # 允许的最大连接
 feign:
   okhttp:
     enabled: true
+  sentinel:
+      enabled: true # 开启feign对sentinel的支持
 
 #只定义一些共享配置中动态的部分
 hm:
@@ -12,3 +19,12 @@ hm:
     title: "黑马商城购物车服务接口文档"
     desc: "黑马商城购物车服务接口文档"
     package: com.hmall.cart.controller
+
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8090 #sentinel控制台地址
+      eager: true #热加载：sentinel默认只有对服务接口调用后才会显示对应信息，此处采用热加载sentinel一启动，就会加载对应服务接口信息
+      http-method-specify: true # 开启请求方式前缀,把`请求方式 + 请求路径`作为簇点资源名
+
